@@ -11,6 +11,7 @@ public:
     void addEdge(int v, int w)
     {
         adj[v].push_back(w);
+        adj[w].push_back(v); // For undirected graph
     }
 
     void parallelDFS(int startVertex)
