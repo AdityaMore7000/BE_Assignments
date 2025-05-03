@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
-#include <omp.h>
-#include <ctime> // For clock()
+#include <omp.h> // For OpenMP functions like omp_get_wtime()
+
 using namespace std;
 
 class Graph {
@@ -135,31 +135,36 @@ int main() {
     cout << "Enter starting vertex: ";
     cin >> start;
 
-    clock_t startTime, endTime;
+    double startTime, endTime;
 
     cout << "\n🔵 Sequential DFS: ";
-    startTime = clock();
+    startTime = omp_get_wtime();
     g.DFS(start);
-    endTime = clock();
-    cout << "\n⏱ Time: " << 1000.0 * (endTime - startTime) / CLOCKS_PER_SEC << " ms\n";
+    endTime = omp_get_wtime();
+    cout << "\n⏱ Time: " << (endTime - startTime) * 1000 << " ms\n";
 
     cout << "\n🟢 Parallel DFS: ";
-    startTime = clock();
+    startTime = omp_get_wtime();
     g.parallelDFS(start);
-    endTime = clock();
-    cout << "\n⏱ Time: " << 1000.0 * (endTime - startTime) / CLOCKS_PER_SEC << " ms\n";
+    endTime = omp_get_wtime();
+    cout << "\n⏱ Time: " << (endTime - startTime) * 1000 << " ms\n";
 
     cout << "\n🔵 Sequential BFS: ";
-    startTime = clock();
+    startTime = omp_get_wtime();
     g.BFS(start);
-    endTime = clock();
-    cout << "\n⏱ Time: " << 1000.0 * (endTime - startTime) / CLOCKS_PER_SEC << " ms\n";
+    endTime = omp_get_wtime();
+    cout << "\n⏱ Time: " << (endTime - startTime) * 1000 << " ms\n";
 
     cout << "\n🟢 Parallel BFS: ";
-    startTime = clock();
+    startTime = omp_get_wtime();
     g.parallelBFS(start);
-    endTime = clock();
-    cout << "\n⏱ Time: " << 1000.0 * (endTime - startTime) / CLOCKS_PER_SEC << " ms\n";
+    endTime = omp_get_wtime();
+    cout << "\n⏱ Time: " << (endTime - startTime) * 1000 << " ms\n";
 
     return 0;
 }
+
+/**
+g++ -fopenmp graph_traversal.cpp -o graph_traversal
+./graph_traversal
+*/
