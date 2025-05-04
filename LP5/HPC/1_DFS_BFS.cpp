@@ -41,14 +41,12 @@ public:
         #pragma omp parallel for
         for (int i = 0; i < adj[v].size(); ++i) {
             int n = adj[v][i];
-            if (!visited[n]) {
-                #pragma omp critical
+                #pragma omp task
                 {
                     if (!visited[n]) {
                         parallelDFSUtil(n, visited);
                     }
                 }
-            }
         }
     }
 
