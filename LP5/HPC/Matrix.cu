@@ -1,7 +1,11 @@
-#include <bits/stdc++.h>
+%%writefile matrix.cu
+#include <iostream>
+#include <cuda.h>
+#include <chrono>
 
 using namespace std;
 using namespace std::chrono;
+
 
 __global__ void multiply(int* A, int* B, int* C, int M, int N, int K) {
     int row = blockIdx.y * blockDim.y + threadIdx.y;

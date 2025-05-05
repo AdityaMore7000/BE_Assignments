@@ -1,4 +1,7 @@
-#include <bits/stdc++.h>
+%%writefile matrix.cu
+#include <iostream>
+#include <cuda.h>
+#include <chrono>
 
 using namespace std;
 using namespace std::chrono;
